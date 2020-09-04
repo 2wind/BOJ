@@ -7,7 +7,7 @@ N, M = [int(x) for x in input().split()]
 def from_select(n_list, r):
     result = []
     if r == 1:
-        result.append(n_list)
+        result = n_list
     else:
         for i in range(len(n_list)-1):
             low_level = from_select(n_list[i+1:], r-1)
@@ -20,10 +20,10 @@ def flatten_recursive(element):
         return element
     
     else:
-        return " ".join(element)
+        return " ".join([flatten_recursive(x) for x in element])
 
 combi = from_select([str(x) for x in range(1, N+1)], M)
-print(len(combi))
 for k in range(len(combi)):
-    print(combi[k])
+    #print(combi[k])
+    print(flatten_recursive(combi[k]))
 

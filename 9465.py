@@ -1,27 +1,4 @@
-# storage: [(max_value, up), ... , False, False] (len(storage) == n)
-def calc_value(first, second, k, storage):
-    st_value = storage[k]
-    f, s = first[k], second[k]
-    if st_value:
-        return storage[n]
-    elif k == 0:
-        storage[k] = (f, True) if f > s else (s, False)        
-        return storage[k]
-    elif k == 1:
-        last = calc_value(first, second, 0, storage)
-
-
-        return storage[k]
-    else:
-        k_minus_1, k_minus_2 = storage[k-1], storage[k-2]
-
-        storage[k] = 1 # calculated value
-
-
-
-
-
-def pick_and_solve(up, first, second, n, storage):
+def pick_and_solve(up, first, second, n):
     if n == 0:
         return first[0] if up else second[0]
     else:
@@ -36,4 +13,31 @@ T = int(input())
 for i in range(T):
     n = int(input())
     first_line, second_line = [int(x) for x in input().split()], [int(x) for x in input().split()]
-    solve(first_line, second_line, n - 1)
+    line = [(x, y) for x in first_line for y in second_line]
+    last_pick_x = None
+    sticker = 0
+    for i in range(n % 2, n, 2):
+        selection = line[:i]
+        if not selection:
+            continue
+        elif i == 1:
+            x, y = selection[0]
+            last_pick_x = True if x > y else False
+            sticker = max(x, y)
+        else:
+            curr = selection[-2:]
+            if last_pick_x:
+                c1, c2 = curr[0][1] + curr[1][0], curr[1][1]
+                last_pick_x = True if c1 > c2 else False
+                add_value = max(c1, c2)
+            else:
+                c1, c2 = curr[0][0] + curr[1][1], curr[0][1]
+                last_pick_x = True if c1 < c2 else False
+                add_value = max(c1, c2)
+            sticker = sticker + add_value
+
+    print(sticker)
+        
+
+
+        

@@ -1,8 +1,24 @@
+import copy
 class Node:
     def __init__(self, data):
         self.data = data
         self.left = None
         self.right = None
+        self.parent = None
+        
+    def __str__(self):
+        return str(self.data)
+
+    def get_data(self):
+        return self.data
+
+    def put(self, node):
+        if self.left == None:
+            self.left = node
+        elif self.right == None:
+            self.right = node
+        else:
+            pass
 
 N = int(input())
 link = [False] * (N + 1)
@@ -18,8 +34,25 @@ for i in range(N-1):
     connect(first, second)
     connect(second, first)
 
+link2 = copy.deepcopy(link)
+
 # list connected
 tree = []
+
+node = Node(number)
+def link_to_tree(node, link2):
+    for i in link2[number]:
+        n_i = Node(i)
+        n_i = link_to_tree(n_i)
+        node.put(n_i)
+
+    link2 = [n.remove(x) for x in link2[number] for n in link2]
+
+    return node
+
+
+
+
 def add(number):
     new_node = Node(number)
     connected = link[number]

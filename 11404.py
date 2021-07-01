@@ -21,6 +21,10 @@ for k in range(1, n+1):
         for j in range(1, n+1):
             adj[i][j] = min(adj[i][j], adj[i][k] + adj[k][j])
 
+for i in range(1, n+1):
+    for j in range(1, n+1):
+        if math.isinf(adj[i][j]):
+            adj[i][j] = 0
 
 for i in range(1, n+1):
     print(" ".join([str(x) for x in adj[i][1:]]))

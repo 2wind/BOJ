@@ -23,7 +23,7 @@ result4 = ccw((x1, y1), (x2, y2), (x4, y4))
 cross1 = result1 * result2
 cross2 = result3 * result4
 if cross1 == 0 and cross2 == 0:
-    if isbetween((x1, y1), (x2, y2), (x3, y3)) or isbetween((x1, y1), (x2, y2), (x4, y4)):
+    if isbetween((x1, y1), (x2, y2), (x3, y3)) or isbetween((x1, y1), (x2, y2), (x4, y4)) or isbetween((x3, y3), (x4, y4), (x1, y1))or isbetween((x3, y3), (x4, y4), (x2, y2)):
         print(1)
     else:
         print(0)

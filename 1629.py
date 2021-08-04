@@ -1,19 +1,28 @@
-A, B, C = [int(x) for x in input().split()]
 
-#assert(A ** B % C
-#   == (A % C) ** B % C)
-result = 1
-while B:
-    if B % 2 == 1:
-        result = result * A % C
-    B = B // 2
-    A = A ** 2 % C
-print(result)
+A, B, C = [int(i) for i in input().split()]
 
-print(pow(A, B, C))
-#result = 1
-#while True:
+# print((A ** B) % C)
+
+Bcopy = B
+Bdiv = []
+while Bcopy > 0:
+    Bdiv.append(Bcopy % 2)
+    Bcopy = Bcopy // 2
+
+# print(Bdiv)
+Bmult = []
+multiplier = 1
+index = 0
+Bmult.append((A ** multiplier) % C)
+while multiplier < B:
+    Bmult.append((Bmult[index] ** 2) % C)
+    multiplier = multiplier * 2
+    index += 1
+
+# print(Bmult)
+leftover = 1
+for i in Bmult:
+    leftover = leftover * i
     
-#    A = A * A % C
-#print(N % C)
-#print((A % C) ** B % C)
+print(leftover % C)
+

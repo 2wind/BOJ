@@ -2,7 +2,7 @@ import sys
 import math
 
 def any_sum(X, Y): # bin sum of [2 ** i, Y), X = 2 ** i
-    i = int(math.log2(X))
+    i = int(math.log2(X)//1)
     if X == Y: # 범위가 0인 경우
         return 0
     elif X == Y - X: # 정확히 한 칸 차이나는 경우
@@ -40,7 +40,7 @@ def naive(A, B):
         result += counter
     return result
 
-for size in range(14, 16):
+for size in range(15, 16):
     print(size)
     for i in range(10**size-1000, 10 ** size-900):
         for j in range(i, 10 ** size):

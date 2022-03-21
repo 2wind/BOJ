@@ -12,15 +12,14 @@ while i < N and j <= N:
     if j == N and part_sum < S:
         break
 
-    if part_sum < S and j < N:
-        part_sum += numbers[j]
-        j += 1
-    else:
+    if part_sum >= S:
+        min_length = min(min_length, j-i)
         part_sum -= numbers[i]
         i += 1
 
-    if i < j and  part_sum >= S and j-i < min_length:
-        min_length = j-i
+    else:
+        part_sum += numbers[j]
+        j += 1
 
 
 print(0 if min_length == N*2 else min_length)

@@ -24,7 +24,7 @@ def part_sum(i): # bin sum of [2**i, 2**(i+1))
 
 def solution(A, B):
     start = 2 ** math.floor(math.log2(A))
-    return int(any_sum(start, B+1)) - int(any_sum(start, A))
+    return int(any_sum(start, B+1) - any_sum(start, A))
 
 
 
@@ -43,7 +43,7 @@ def naive(A, B):
 for size in range(15, 16):
     print(size)
     for i in range(10**size-1000, 10 ** size-900):
-        for j in range(i, 10 ** size):
+        for j in range(i, i + 10 ** size):
             # print(i, j)
             # print(solution(i, j))
             # print(naive(i, j))
